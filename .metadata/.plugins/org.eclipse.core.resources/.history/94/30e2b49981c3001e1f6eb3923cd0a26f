@@ -1,0 +1,14 @@
+package Practice.Interview;
+
+import org.testng.annotations.Test;
+
+public class flipkartTestCase {
+	
+	@Test
+	public void testcase() throws InterruptedException {
+		LoginPage loginpage=new LoginPage(driver);
+		loginpage.btnlogin().click();
+		Thread.sleep(2000);
+	}
+
+}

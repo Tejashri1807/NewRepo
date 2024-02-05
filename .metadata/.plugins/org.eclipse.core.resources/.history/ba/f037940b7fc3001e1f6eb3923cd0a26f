@@ -1,0 +1,18 @@
+package Practice.Interview;
+
+import org.testng.annotations.BeforeClass;
+
+public class Class 
+{
+	public static driver;
+    @BeforeClass
+    public  void beforeclass() {
+    	System.setProperty("webdriver.chrome.driver", "Path");
+    	 driver=new ChromeDriver();
+    	
+    	
+    	
+    	
+    	
+    }
+}

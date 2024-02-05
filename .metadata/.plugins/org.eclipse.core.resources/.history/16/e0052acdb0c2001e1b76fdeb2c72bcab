@@ -1,0 +1,13 @@
+package Practice.Interview;
+
+public interface demo {
+	
+	public void startinterface();
+	
+	 static void startinterface2() {
+		
+	System.out.println("Hello Interface");	
+	}
+	  // Static Method
+	    void hello();
+}

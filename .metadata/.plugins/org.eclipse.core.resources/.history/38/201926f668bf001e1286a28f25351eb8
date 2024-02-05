@@ -1,0 +1,95 @@
+package framworkFromScratch.testUtils;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.time.Duration;
+import java.util.Properties;
+
+import org.MobileAutomation.Utils.AppiumUtils;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
+import com.google.common.collect.ImmutableMap;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+
+public class AndroidBaseTest extends AppiumUtils{
+	
+	public AndroidBaseTest(AndroidDriver driver) {
+		super(driver);
+		// TODO Auto-generated constructor stub
+	}
+
+	public AppiumDriverLocalService service;
+	public AppiumDriver driver ;
+	public UiAutomator2Options options;
+	
+	@BeforeClass (alwaysRun=true)
+	public void appiumstart() throws IOException {
+		Properties property=new Properties();
+		FileInputStream file=new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\org\\MobileAutomation\\Resources\\data.properties");
+		String ipAddress = System.getProperty("IpAddress") != null ? System.getProperty("IpAddress"): property.getProperty("IpAddress");
+		// for getting ipaddress from mvn terminal otherwise taken from property file.
+		property.load(file);
+		//String ipAddress=property.getProperty("IpAddress");
+		String port=property.getProperty("port");
+		
+		service=startServer(ipAddress,Integer.parseInt(port));
+
+        options = new UiAutomator2Options();
+        options.setDeviceName(property.getProperty("deviceName"));
+        options.setChromedriverExecutable("D:\\MobileAutomationTesting\\chromedriver.exe");     
+        //options.setApp("D:\\Mobile Automation Testing\\eclipse\\startAppium\\src\\test\\java\\apkfiles\\ApiDemos-debug.apk");
+        options.setApp(System.getProperty("user.dir")+"\\src\\test\\java\\framworkFromScratch\\resources\\General-Store.apk");
+
+        driver = new AndroidDriver(service.getUrl(), options);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	}
+	
+	public void longPressAction(WebElement ele) {
+		((JavascriptExecutor)driver).executeScript("mobile: longClickGesture",
+				ImmutableMap.of("elementId",((RemoteWebElement)ele).
+						getId(),"duration",2000));
+	}
+	
+	public void swipePage(WebElement element,String direction) {
+		((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+				"elementId",((RemoteWebElement)element).
+				getId(),
+			    "direction", direction,
+			    "percent", 0.75
+			));
+	}
+	
+	public void dragAndDrop(WebElement element, int a, int b) {
+		((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+			    "elementId", ((RemoteWebElement) element).getId(),
+			    "endX", a,
+			    "endY", b
+			));
+	}
+	
+//	public WebElement scrollUptoElement(String elementText) {
+//	     return driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector())"
+//	            + ".scrollIntoView(new UiSelector().text(\"" + elementText + "\"));"));
+//	}
+//	
+	public void setappActivity() throws MalformedURLException {
+		options.setAppActivity("com.androidsample.generalstore.MainActivity"); 
+        driver = new AndroidDriver(options);
+	}
+	
+	@AfterClass (alwaysRun=true)
+	public void appiumclose() {
+		  	driver.quit();
+	        service.stop();
+	}
+
+}

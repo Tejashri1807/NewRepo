@@ -1,0 +1,9 @@
+package Practice.Interview;
+
+public class LoginPage {
+	
+	//title="Login"
+	@FindBy(xpath="//title='Login'")
+	private WebElement btnLogin;
+
+}

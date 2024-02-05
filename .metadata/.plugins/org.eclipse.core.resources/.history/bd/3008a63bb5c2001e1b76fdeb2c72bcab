@@ -1,0 +1,27 @@
+package Practice.Interview;
+
+public class Class 
+{
+    public static void main( String[] args )
+    {
+        String a="Tejashri Balkrushna Dhobale";
+        String b=" ";
+        String[] c = a.split(" ");
+      //  System.out.println(c[0]);
+    	for(int i=0;i<c.length;i++) { //2
+    		
+    		String d = c[i]; //
+    		for(int j=d.length()-1;j>=0;j--) {
+    			b=b+d.charAt(j);
+    			
+    	//System.out.print("");
+    		}
+    	//	System.out.print(" ");
+    	}
+    	System.out.print(b +" ");
+    	StringBuilder m=new StringBuilder();
+    	m.append(a);
+    	StringBuilder v = m.reverse();
+    	System.out.println(v);
+    }
+}

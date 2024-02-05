@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;mobile-automation-testing&apos; to &apos;melaluaca-mobile-automation-testing&apos;&#x0D;&#x0A;- Original element: &apos;mobile-automation-testing&apos;&#x0D;&#x0A;- Renamed element: &apos;mobile-automation-testing&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;mobile-automation-testing&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=mobile-automation-testing" name="melaluaca-mobile-automation-testing" references="true" stamp="1704887754588" version="1.0"/>
+</session>

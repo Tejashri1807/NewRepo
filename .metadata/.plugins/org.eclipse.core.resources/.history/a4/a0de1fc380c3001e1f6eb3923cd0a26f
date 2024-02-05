@@ -1,0 +1,14 @@
+package Practice.Interview;
+
+import org.testng.annotations.Test;
+
+public class flipkartTestCase {
+	
+	@Test
+	public void testcase() {
+		LoginPage loginpage=new LoginPage();
+		loginpage.btnlogin().click();
+		Thread.sleep(20);
+	}
+
+}

@@ -1,0 +1,7 @@
+package Practice.Interview;
+
+public interface demo {
+	
+	public void startinterface();
+
+}

@@ -1,0 +1,18 @@
+package Practice.Interview;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class LoginPage extends Class{
+	
+	//title="Login"
+	@FindBy(xpath="//a[@title='Login']")
+	private WebElement btnLogin;
+	
+	public LoginPage() {
+		
+		PageFactory.initElements(driver, this);
+	}
+
+}

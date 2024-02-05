@@ -1,0 +1,54 @@
+package framworkFromScratch.PageObject.Android;
+
+import org.MobileAutomation.Utils.AndroidActions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+
+public class FormPage extends AndroidActions{
+	AndroidDriver driver;
+	public FormPage(AndroidDriver driver) {
+		super(driver);
+		this.driver=driver;
+		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+	}
+	
+	@AndroidFindBy
+	//(id="com.androidsample.generalstore:id/spinnerCountry")
+	(className="android.widget.Spinner")
+	private WebElement countryField;
+	@AndroidFindBy(className="android.widget.EditText")
+	private WebElement fieldYourName;
+	@AndroidFindBy(xpath="//android.widget.RadioButton[@text='Female']")
+	private WebElement femaleOption;
+	@AndroidFindBy(xpath="//android.widget.RadioButton[@text='Male']")
+	private WebElement maleOption;
+	@AndroidFindBy(className="android.widget.Button")
+	private WebElement btnLetsShop;
+	
+	public void clickCountryField(String countryName) {
+		countryField.click();
+		WebElement clickonElement = scrollUptoElement(countryName);
+		clickonElement.click();
+	}
+	public void fillYourName(String name) {
+		fieldYourName.sendKeys(name);O
+	}
+	public void clickRadioButton(String gender) {
+		if(gender.contains("Female")) {
+			femaleOption.click();
+		}
+		else {
+			maleOption.click();
+		}	
+	}
+	public ProductCatalogue submitForm() {
+		btnLetsShop.click();
+		return new ProductCatalogue(driver);
+	}
+
+
+}

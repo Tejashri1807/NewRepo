@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"melaluaca.mobile_automation","l":"Mapk_LoginTest"},{"p":"melaluaca.mobile_automation","l":"MapkBaseTest"},{"p":"melaluaca.mobile_automation","l":"MapkLoginPage"}];updateSearchResults();

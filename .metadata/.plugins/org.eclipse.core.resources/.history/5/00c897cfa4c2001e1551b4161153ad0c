@@ -1,0 +1,5 @@
+package Practice.Interview;
+
+public interface demo {
+
+}
